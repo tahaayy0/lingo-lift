@@ -1,65 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { wordsData } from '../data/Words';
-import WordList from '../components/Learning/WordList';
+import React from 'react';
+import featureImage from '../assets/featureImg.PNG';
 
 const HomePage = () => {
-  const [word, setWord] = useState('');
-  const [translation, setTranslation] = useState('');
-  const [wordList, setWordList] = useState([]);
-
-  useEffect(() => {
-    const savedWords = JSON.parse(localStorage.getItem('wordList') || '[]');
-    setWordList(savedWords);
-  }, []);
-
-  const handleAddWord = (e) => {
-    e.preventDefault();
-    if (word && translation) {
-      const newWordList = [...wordList, { word, translation }];
-      setWordList(newWordList);
-      localStorage.setItem('wordList', JSON.stringify(newWordList));
-      setWord('');
-      setTranslation('');
-    }
-  };
-
+  
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-4">Lingo Liftle Kalın Sağlıcakla Kalın</h1>
-      <p className="text-xl mb-8">Practice and improve your English skills!</p>
-      
-     
-      <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Add New Word</h2>
-        <form onSubmit={handleAddWord} className="space-y-4">
-          <div>
-            <input
-              type="text"
-              value={word}
-              onChange={(e) => setWord(e.target.value)}
-              placeholder="Enter English word"
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              value={translation}
-              onChange={(e) => setTranslation(e.target.value)}
-              placeholder="Enter Turkish translation"
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
-          >
-            Add Word
-          </button>
-        </form>
-      </div>
+    <div className="max-w-6xl mx-auto p-8">
+      {/* Hero Section */}
+      <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+    
+        <div className="w-full md:w-1/2">
+          <img 
+            src={featureImage}
+            alt="Language Learning" 
+            className="rounded-lg shadow-lg w-full h-auto object-cover"
+          />
+        </div>
 
-     
+    
+        <div className="w-full md:w-1/2 space-y-4">
+          <h1 className="text-4xl font-bold text-gray-800">
+            Lingo Liftle Kalın Sağlıcakla Kalın
+          </h1>
+          <p className="text-xl text-gray-600">
+            Practice and improve your English skills!
+          </p>
+          <p className="text-gray-700">
+            Start your language learning journey today with our interactive platform. 
+            Learn new words, practice pronunciation, and track your progress.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

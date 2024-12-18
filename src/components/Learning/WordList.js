@@ -3,7 +3,7 @@ import { wordsData } from '../../data/Words';
 
 const WordList = () => {
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md max-w-[70%] mx-auto mb-20">
+        <div className="bg-white p-6 rounded-lg shadow-md max-w-[70%] mx-auto mb-20 ">
             <h2 className="text-2xl font-semibold mb-4">Word List</h2>
             <div className="space-y-2">
                 {wordsData.map((item, index) => (

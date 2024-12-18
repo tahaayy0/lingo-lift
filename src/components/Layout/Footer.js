@@ -21,21 +21,7 @@ const Footer = () => {
                   Ana Sayfa
                 </Link>
               </li>
-              <li>
-                <Link to="/about" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
-                  Hakkımızda
-                </Link>
-              </li>
-              <li>
-                <Link to="/courses" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
-                  Kurslar
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
-                  İletişim
-                </Link>
-              </li>
+         
             </ul>
           </div>
 
