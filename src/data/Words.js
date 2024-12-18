@@ -118,4 +118,4 @@ export const wordsData = [
         english: "Bon Appétit",
         turkish: "Afiyet olsun",
     }
-]; // Listenin kalanını oluşturmak için aynı formatı kullanabilirsiniz.
+];
