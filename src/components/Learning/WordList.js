@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { wordsData } from '../../data/Words';
 
+
 const WordList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState('english');
+    
 
     const filteredWords = wordsData.filter(word => 
         word.english.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -31,6 +33,15 @@ const WordList = () => {
                                 />
                                 <span className="absolute right-3 top-2.5 text-gray-400">🔍</span>
                             </div>
+                            <select
+                                className="px-4 py-2 rounded-lg border-2 border-gray-200 focus:border-indigo-500 outline-none"
+                            >
+                                <option value="wordsDataA1">A1</option>
+                                <option value="wordsDataA2">A2</option>
+                                <option value="wordsDataB1">B1</option>
+                                <option value="wordsDataB2">B2</option>
+                                <option value="wordsDataC1">C1</option>
+                            </select>
                             <select
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value)}

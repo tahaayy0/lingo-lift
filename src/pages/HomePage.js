@@ -22,14 +22,6 @@ const HomePage = () => {
             <p className="text-xl text-gray-600 mb-8">
               İnteraktif oyunlar ve araçlarla dil öğrenmeyi keyifli hale getirin
             </p>
-            <div className="flex gap-4 justify-center">
-              <button className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
-                Hemen Başla
-              </button>
-              <button className="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-lg hover:bg-indigo-50 transition-colors">
-                Daha Fazla Bilgi
-              </button>
-            </div>
           </div>
           
           <div className="w-full md:w-3/4 relative">
