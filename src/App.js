@@ -11,7 +11,7 @@ import WordList from './components/Learning/WordList';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen from-blue-50 via-indigo-50 to-purple-50 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <Header />
         <main className="container mx-auto px-4 pt-20">
           <Routes>
