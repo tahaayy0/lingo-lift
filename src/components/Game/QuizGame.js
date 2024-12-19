@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { wordsData } from '../../data/Words';
+import { wordsDataA1, wordsDataA2, wordsDataB1, wordsDataB2, wordsDataC1 } from '../../data/Words';
 
 const QuizGame = () => {
+  const [level, setLevel] = useState(null); // Seviye seçimi için state
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -9,28 +10,43 @@ const QuizGame = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
 
+  // Seviye seçimine göre kelimeleri ayarla
   useEffect(() => {
-    const shuffledWords = [...wordsData].sort(() => Math.random() - 0.5).slice(0, 10);
-    
-    const preparedQuestions = shuffledWords.map(word => {
-      const otherAnswers = wordsData
-        .filter(w => w.turkish !== word.turkish)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3)
-        .map(w => w.turkish);
+    if (level) {
+      const wordsData = getWordsDataByLevel(level);
+      const shuffledWords = [...wordsData].sort(() => Math.random() - 0.5).slice(0, 10);
 
-      const options = [...otherAnswers, word.turkish]
-        .sort(() => Math.random() - 0.5);
+      const preparedQuestions = shuffledWords.map(word => {
+        const otherAnswers = wordsData
+          .filter(w => w.turkish !== word.turkish)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3)
+          .map(w => w.turkish);
 
-      return {
-        question: `"${word.english}" kelimesinin Türkçe karşılığı nedir?`,
-        options: options,
-        correctAnswer: word.turkish
-      };
-    });
+        const options = [...otherAnswers, word.turkish]
+          .sort(() => Math.random() - 0.5);
 
-    setQuestions(preparedQuestions);
-  }, []);
+        return {
+          question: `"${word.english}" kelimesinin Türkçe karşılığı nedir?`,
+          options: options,
+          correctAnswer: word.turkish
+        };
+      });
+
+      setQuestions(preparedQuestions);
+    }
+  }, [level]);
+
+  const getWordsDataByLevel = (level) => {
+    switch (level) {
+      case 'A1': return wordsDataA1;
+      case 'A2': return wordsDataA2;
+      case 'B1': return wordsDataB1;
+      case 'B2': return wordsDataB2;
+      case 'C1': return wordsDataC1;
+      default: return [];
+    }
+  };
 
   const handleAnswerClick = (selectedAnswer) => {
     setSelectedAnswer(selectedAnswer);
@@ -54,33 +70,34 @@ const QuizGame = () => {
   };
 
   const handleRestart = () => {
+    setLevel(null); // Seviye seçimi ekranına geri dön
     setCurrentQuestion(0);
     setScore(0);
     setShowScore(false);
     setSelectedAnswer(null);
     setIsCorrect(null);
-    
-    const shuffledWords = [...wordsData].sort(() => Math.random() - 0.5).slice(0, 10);
-    
-    const preparedQuestions = shuffledWords.map(word => {
-      const otherAnswers = wordsData
-        .filter(w => w.turkish !== word.turkish)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3)
-        .map(w => w.turkish);
-
-      const options = [...otherAnswers, word.turkish]
-        .sort(() => Math.random() - 0.5);
-
-      return {
-        question: `"${word.english}" kelimesinin Türkçe karşılığı nedir?`,
-        options: options,
-        correctAnswer: word.turkish
-      };
-    });
-
-    setQuestions(preparedQuestions);
   };
+
+  if (!level) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center">
+        <div className="bg-white rounded-xl shadow-xl p-16">
+          <h2 className="text-2xl font-bold text-indigo-600 mb-10">Seviye Seçimi</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
+            {['A1', 'A2', 'B1', 'B2', 'C1'].map(lvl => (
+              <button
+                key={lvl}
+                onClick={() => setLevel(lvl)}
+                className="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all"
+              >
+                {lvl} Seviyesi
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (questions.length === 0) {
     return (
@@ -91,7 +108,7 @@ const QuizGame = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-16">
       <div className="max-w-2xl mx-auto px-4">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           {showScore ? (

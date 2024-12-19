@@ -2,18 +2,19 @@ import React from 'react';
 import featureImage from '../assets/featureImg.PNG';
 
 
+
+
 const HomePage = () => {
   const features = [
-    { icon: "🎯", title: "Quiz Oyunu", description: "Eğlenceli quizlerle kelime bilginizi test edin" },
-    { icon: "🎮", title: "Sürükle & Bırak", description: "İnteraktif eşleştirme oyunuyla pratik yapın" },
-    { icon: "📝", title: "Kelime Listesi", description: "Kapsamlı kelime listemizle çalışın" },
-    { icon: "🔄", title: "Flashcards", description: "Hafıza kartlarıyla tekrar yapın" },
+    { icon: "🎯", title: "Quiz Oyunu", description: "Eğlenceli quizlerle kelime bilginizi test edin", page: "/quiz" },
+    { icon: "🎮", title: "Sürükle & Bırak", description: "İnteraktif eşleştirme oyunuyla pratik yapın" , page: "/dragAndDrop"},
+    { icon: "📝", title: "Kelime Listesi", description: "Kapsamlı kelime listemizle çalışın", page:"/flashcards" },
+    { icon: "🔄", title: "Flashcards", description: "Hafıza kartlarıyla tekrar yapın", page:"/wordlist" },
   ];
-  
+ 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-50">
       <div className="max-w-6xl mx-auto p-8 pt-24">
-        {/* Hero Section */}
         <div className="flex flex-col items-center gap-8 mb-16">
           <div className="text-center max-w-2xl">
             <h1 className="text-5xl font-bold text-indigo-600 mb-6">
@@ -23,7 +24,7 @@ const HomePage = () => {
               İnteraktif oyunlar ve araçlarla dil öğrenmeyi keyifli hale getirin
             </p>
           </div>
-          
+
           <div className="w-full md:w-3/4 relative">
             <div className="absolute inset-0 bg-indigo-600 rounded-2xl transform rotate-2"></div>
             <img 
@@ -34,14 +35,14 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Features Section */}
+      
         <div className="py-16">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
             Özelliklerimiz
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((featuresData, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
                 <div className="text-4xl mb-4">{featuresData.icon}</div>
                 <h3 className="text-xl font-semibold mb-2 text-indigo-600">{featuresData.title}</h3>
                 <p className="text-gray-600">{featuresData.description}</p>
