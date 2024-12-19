@@ -1,8 +1,6 @@
 import React from 'react';
 import featureImage from '../assets/featureImg.PNG';
-
-
-
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const features = [
@@ -11,6 +9,7 @@ const HomePage = () => {
     { icon: "📝", title: "Kelime Listesi", description: "Kapsamlı kelime listemizle çalışın", page:"/flashcards" },
     { icon: "🔄", title: "Flashcards", description: "Hafıza kartlarıyla tekrar yapın", page:"/wordlist" },
   ];
+  const navigate = useNavigate();
  
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-50">
@@ -42,7 +41,8 @@ const HomePage = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((featuresData, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+              <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+              onClick={navigate(featuresData.page)}>
                 <div className="text-4xl mb-4">{featuresData.icon}</div>
                 <h3 className="text-xl font-semibold mb-2 text-indigo-600">{featuresData.title}</h3>
                 <p className="text-gray-600">{featuresData.description}</p>

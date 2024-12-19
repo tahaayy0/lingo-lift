@@ -1,26 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { wordsData } from '../../data/Words';
+import { wordsDataA1, wordsDataA2, wordsDataB1, wordsDataB2, wordsDataC1 } from '../../data/Words';
 
 const DragAndDropGame = () => {
+  const [level, setLevel] = useState(null);
   const [words, setWords] = useState([]);
   const [turkishWords, setTurkishWords] = useState([]);
   const [gameComplete, setGameComplete] = useState(false);
 
   useEffect(() => {
+    if (level) {
+      const wordsData = getWordsDataByLevel(level);
+      const shuffledWords = [...wordsData]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5);
 
-    const shuffledWords = [...wordsData]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 5);
+      const selectedTurkishWords = shuffledWords.map(word => word.turkish);
+      const shuffledTurkish = [...selectedTurkishWords].sort(() => Math.random() - 0.5);
 
-    const selectedTurkishWords = shuffledWords.map(word => word.turkish);
-    const shuffledTurkish = [...selectedTurkishWords].sort(() => Math.random() - 0.5);
+      setWords(shuffledWords.map(word => ({
+        ...word,
+        isMatched: false
+      })));
+      setTurkishWords(shuffledTurkish);
+    }
+  }, [level]);
 
-    setWords(shuffledWords.map(word => ({
-      ...word,
-      isMatched: false
-    })));
-    setTurkishWords(shuffledTurkish);
-  }, []);
+  const getWordsDataByLevel = (level) => {
+    switch (level) {
+      case 'A1': return wordsDataA1;
+      case 'A2': return wordsDataA2;
+      case 'B1': return wordsDataB1;
+      case 'B2': return wordsDataB2;
+      case 'C1': return wordsDataC1;
+      default: return [];
+    }
+  };
 
   const handleDragStart = (e, english) => {
     e.dataTransfer.setData('text', english);
@@ -51,15 +65,30 @@ const DragAndDropGame = () => {
   };
 
   const handleRestart = () => {
+    setLevel(null);
     setGameComplete(false);
-    const shuffledWords = [...wordsData]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 5);
-    setWords(shuffledWords.map(word => ({
-      ...word,
-      isMatched: false
-    })));
   };
+
+  if (!level) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center">
+        <div className="bg-white rounded-xl shadow-xl p-16">
+          <h2 className="text-2xl font-bold text-indigo-600 mb-10">Drag And Drop</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
+            {['A1', 'A2', 'B1', 'B2', 'C1'].map(lvl => (
+              <button
+                key={lvl}
+                onClick={() => setLevel(lvl)}
+                className="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all"
+              >
+                {lvl} Seviyesi
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-purple-100 py-6 flex flex-col sm:py-12">

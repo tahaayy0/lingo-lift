@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
   return (
@@ -12,20 +12,16 @@ const Footer = () => {
             <p className="text-gray-300">Dil öğrenmeyi kolaylaştırıyoruz</p>
           </div>
 
-          {/* Hızlı Bağlantılar */}
+   
           <div className="mb-6 md:mb-0">
-            <h4 className="text-xl font-semibold text-blue-400 mb-4">Hızlı Bağlantılar</h4>
+            <h4 className="text-xl font-semibold text-blue-400 mb-4">Misyonumuz</h4>
             <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-gray-300 hover:text-blue-400 transition-colors duration-300">
-                  Ana Sayfa
-                </Link>
-              </li>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
          
             </ul>
           </div>
 
-          {/* İletişim Bilgileri */}
+       
           <div>
             <h4 className="text-xl font-semibold text-blue-400 mb-4">İletişim</h4>
             <div className="space-y-2 text-gray-300">
@@ -35,7 +31,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Alt Kısım - Copyright */}
+       
         <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} LingoLift. Tüm hakları saklıdır.</p>
         </div>

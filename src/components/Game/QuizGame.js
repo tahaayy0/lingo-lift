@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { wordsDataA1, wordsDataA2, wordsDataB1, wordsDataB2, wordsDataC1 } from '../../data/Words';
 
 const QuizGame = () => {
-  const [level, setLevel] = useState(null); // Seviye seçimi için state
+  const [level, setLevel] = useState(null); 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -10,7 +10,7 @@ const QuizGame = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
 
-  // Seviye seçimine göre kelimeleri ayarla
+  
   useEffect(() => {
     if (level) {
       const wordsData = getWordsDataByLevel(level);
@@ -70,7 +70,7 @@ const QuizGame = () => {
   };
 
   const handleRestart = () => {
-    setLevel(null); // Seviye seçimi ekranına geri dön
+    setLevel(null); 
     setCurrentQuestion(0);
     setScore(0);
     setShowScore(false);
@@ -82,7 +82,7 @@ const QuizGame = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center">
         <div className="bg-white rounded-xl shadow-xl p-16">
-          <h2 className="text-2xl font-bold text-indigo-600 mb-10">Seviye Seçimi</h2>
+          <h2 className="text-2xl px-6 font-bold text-indigo-600 mb-10">Quiz Game</h2>
           <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
             {['A1', 'A2', 'B1', 'B2', 'C1'].map(lvl => (
               <button
