@@ -16,11 +16,11 @@ function App() {
         <main className="container mx-auto px-4 pt-20">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/wordlist" element={<WordList />} />
+            <Route path="/flashcards" element={<Flashcards />} />
             <Route path="/quiz" element={<QuizGame />} />
             <Route path="/dragAndDrop" element={<DragAndDropGame />} />
-            <Route path="/flashcards" element={<Flashcards />} />
-            <Route path="/wordlist" element={<WordList />} />
-          </Routes>
+         </Routes>
         </main>
         <Footer/>
       </div>

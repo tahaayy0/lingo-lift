@@ -99,20 +99,20 @@ const Header = () => {
           </li>
           <li>
             <Link
-              to="/flashcards"
-              onClick={toggleMenu}
-              className="hover:text-blue-400 transition-colors duration-300 font-medium"
-            >
-              Flashcards
-            </Link>
-          </li>
-          <li>
-            <Link
               to="/wordlist"
               onClick={toggleMenu}
               className="hover:text-blue-400 transition-colors duration-300 font-medium"
             >
               Word List
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/flashcards"
+              onClick={toggleMenu}
+              className="hover:text-blue-400 transition-colors duration-300 font-medium"
+            >
+              Flashcards
             </Link>
           </li>
           <li>

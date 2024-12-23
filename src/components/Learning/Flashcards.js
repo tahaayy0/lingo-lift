@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  wordsDataA1,
-  wordsDataA2,
-  wordsDataB1,
-  wordsDataB2,
-  wordsDataC1,
-} from '../../data/Words';
+import {wordsDataA1, wordsDataA2, wordsDataB1, wordsDataB2, wordsDataC1} from '../../data/Words';
 
 const Flashcards = () => {
   const [currentLevel, setCurrentLevel] = useState('A1');
